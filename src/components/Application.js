@@ -4,74 +4,32 @@ import "components/Appointment"
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
 import axios from 'axios';
+import { access } from "fs";
 
-const appointments = [
-  {
-    id: 1,
-    time: "12pm",
-  },
-  {
-    id: 2,
-    time: "1pm",
-    interview: {
-      student: "Lydia Miller-Jones",
-      interviewer:{
-        id: 3,
-        name: "Sylvia Palmer",
-        avatar: "https://i.imgur.com/LpaY82x.png",
-      }
-    }
-  },
-  {
-    id: 3,
-    time: "2pm",
-  },
-  {
-    id: 4,
-    time: "3pm",
-    interview: {
-      student: "Archie Andrews",
-      interviewer:{
-        id: 4,
-        name: "Cohana Roy",
-        avatar: "https://i.imgur.com/FK8V841.jpg",
-      }
-    }
-  },
-  {
-    id: 5,
-    time: "4pm",
-  }
-];
 
 export default function Application(props) {
-  
-  const [day, setDay] = useState([]);
+
+  const setDay = day => setState({ ...state, day });
+  const setDays = days => setState({...state, days})
+
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    // you may put the line below, but will have to remove/comment hardcoded appointments variable
+    appointments: {}
+  });
+
+  const dailyAppointments = [];
+  dailyAppointments.map(appointment => ({
+    
+  }))
 
   useEffect(() => {
     const daysUrls = 'http://localhost:8001/api/days';
     axios.get(daysUrls).then(res => {
-      setDay(res.data);
+      setDays(res.data);
     })
   }, [])
-
-  const days = [
-    {
-      id: 1,
-      name: "Monday",
-      spots: 2,
-    },
-    {
-      id: 2,
-      name: "Tuesday",
-      spots: 5,
-    },
-    {
-      id: 3,
-      name: "Wednesday",
-      spots: 0,
-    },
-  ];
 
   const schedule = appointments.map(appointment => {
     return (
@@ -94,8 +52,8 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
         <DayList
-          days={days}
-          day={day}
+          days={state.days}
+          day={state.day}
           setDay={setDay}
           />
         </nav>
