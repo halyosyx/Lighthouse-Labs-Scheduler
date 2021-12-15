@@ -14,3 +14,33 @@ export function getAppointmentsForDay(state, name) {
     }
     return filteredAppointments;
   }
+
+export function getInterview(state, interview) {
+    if(!interview){
+        return null;
+    }
+    const newInterview = {};
+    newInterview.student = interview.student;
+    newInterview.interviewer = state.interviewers[interview.interviewer];
+    
+    return newInterview;
+}
+
+export function getInterviewersForDay(state, name) {
+    const filteredDays = state.days.filter(day => day.name === name);
+    if(state.days.length===0 || filteredDays.length===0){
+      return [];
+    }
+  
+    //get interviwers for the days
+    const interviewersFromDays = filteredDays[0].interviewers;
+   
+    let filteredInterviewers = [];
+  
+    for(let interviewer of interviewersFromDays) {
+      filteredInterviewers.push(state.interviewers[interviewer]);
+    }
+    return filteredInterviewers;
+
+
+}

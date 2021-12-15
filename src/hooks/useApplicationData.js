@@ -45,6 +45,7 @@ export default function useApplicationData() {
 
 
   //function to book an interview
+  //This function has the ability to decrease remaining spots
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -85,6 +86,7 @@ export default function useApplicationData() {
 
 
       //function to cancel the interview
+      //This function has the ability to increase the amount of spots left
   function cancelInterview(id){
     const appointment = {
       ...state.appointments[id],
