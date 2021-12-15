@@ -4,32 +4,20 @@ import "components/Appointment"
 import DayList from "components/DayList";
 import Appointment from "components/Appointment";
 import axios from 'axios';
-import { access } from "fs";
+import useApplicationData from "hooks/useApplicationData";
+import { getAppointmentsForDay } from "../helpers/selectors"
 
 
 export default function Application(props) {
 
-  const setDay = day => setState({ ...state, day });
-  const setDays = days => setState({...state, days})
+  const {
+    state,
+    setDay,
+    bookInterview,
+    cancelInterview
+  } = useApplicationData();
 
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    // you may put the line below, but will have to remove/comment hardcoded appointments variable
-    appointments: {}
-  });
-
-  const dailyAppointments = [];
-  dailyAppointments.map(appointment => ({
-    
-  }))
-
-  useEffect(() => {
-    const daysUrls = 'http://localhost:8001/api/days';
-    axios.get(daysUrls).then(res => {
-      setDays(res.data);
-    })
-  }, [])
+  const appointments = getAppointmentsForDay(state, state.day)
 
   const schedule = appointments.map(appointment => {
     return (
@@ -54,7 +42,7 @@ export default function Application(props) {
         <DayList
           days={state.days}
           day={state.day}
-          setDay={setDay}
+          setDay={day => {setDay(day)}}
           />
         </nav>
       <img className="sidebar__lhl sidebar--centered"

@@ -1,17 +1,16 @@
-export function getAppointmentsForDay(state, day) {
-    if(!state.days){
-        return [];
-      }
-
-      let theDay = state.days.filter(d => d.name === day)[0];
-      if(!theDay){
-        return [];
-      }
-      let result = [];
-      for(const id of theDay.appointments){
-        const appointment = state.appointments[id];
-        result.push(appointment);
-      }
-    
-      return result;
+export function getAppointmentsForDay(state, name) {
+    const filteredDays = state.days.filter(day => day.name === name);
+    if(state.days.length===0 || filteredDays.length===0){
+      return [];
+    }
+  
+    //get the appointments
+    const appointmentsFromDays = filteredDays[0].appointments;
+   
+    let filteredAppointments = [];
+   
+    for(let appointment of appointmentsFromDays) {
+      filteredAppointments.push(state.appointments[appointment]);
+    }
+    return filteredAppointments;
   }
