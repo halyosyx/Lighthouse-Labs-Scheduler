@@ -13,7 +13,7 @@ export default function useApplicationData() {
 
 
 
-  //This function will set the day inside the useState above
+  //Sets the day utilizing the useState above
   const setDay = day => {
     return setState({ ...state, day })
   };
@@ -31,7 +31,7 @@ export default function useApplicationData() {
     })
   },[]);
 
-  //find the day
+  
   function findDay(day) {
     const daysOfWeek = {
       Monday: 0,
