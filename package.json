@@ -5,8 +5,8 @@
   "dependencies": {
     "axios": "^0.24.0",
     "classnames": "^2.2.6",
+    "cypress": "^9.1.1",
     "normalize.css": "^8.0.1",
-    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-scripts": "3.0.0"
@@ -17,6 +17,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public --ci",
+    "cypress": "cypress open -P .",
     "build-storybook": "build-storybook -s public"
   },
   "browserslist": {
@@ -41,7 +42,8 @@
     "@testing-library/jest-dom": "^4.0.0",
     "@testing-library/react": "^8.0.7",
     "babel-loader": "^8.0.5",
-    "node-sass": "^4.14.0"
+    "node-sass": "^4.14.0",
+    "prop-types": "^15.7.2"
   },
   "jest": {
     "watchPathIgnorePatterns": [

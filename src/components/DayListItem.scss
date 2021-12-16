@@ -6,6 +6,7 @@
     @include fade;
 
     color: #8395a7;
+    
     height: 5rem;
     padding-left: 2rem;
     display: flex;
@@ -19,7 +20,7 @@
     }
 
     &--selected {
-      background-color: darken($white, 5%);
+      background-color: rgb(242, 242, 242);
       color: $dark-background;
 
       &:hover {
